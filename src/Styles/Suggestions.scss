@@ -1,0 +1,33 @@
+.Suggestions {                        
+    position: absolute;
+    width: 80%;
+    top: 100%;
+    margin: -0.5rem auto;
+    z-index: 1;
+    color: black;
+    cursor: pointer;
+
+    /*
+    Issue here was that you can't use `display:none` as that will
+    completely hide the clickable element meaning it would be impossible
+    navigate to it, therefore animate hide it so it remains clickable
+    but doesn't cover the main panel
+    */
+    &.false {
+        animation: incomplete-hide 2s;
+    }
+}
+
+@keyframes incomplete-hide {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.01;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,48 @@
+#Weather {
+    margin: 1% auto;
+    border-radius: 32px;
+    padding: 5%;
+    color: white;
+    background: linear-gradient(180deg, #007bff, #007bff7F);
+    text-align: center;
+
+    h1 {
+        font-size: 5em;
+    }
+
+    h4 > .skycon {
+        width: 150px !important;
+    }
+}
+
+#Carousel {
+    overflow: hidden;
+    > .row {
+        flex-wrap: nowrap;
+    }
+}
+
+#Carousel.left {
+    .Slider {
+        animation: slideLeft 1s;
+        animation-fill-mode: forwards;
+    }
+        
+}
+
+#Carousel.right {
+    .Slider {
+        animation: slideRight 1s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes slideRight {
+    from { transform: translateX(0px); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes slideLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0px); }
+}

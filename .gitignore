@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+*.css
+icon-*72*
+icon-*96*
+icon-*128*
+icon-*144*
+icon-*152*
+icon-*192*
+icon-*384*
+build
