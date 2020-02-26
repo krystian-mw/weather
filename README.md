@@ -12,3 +12,5 @@ Built more on a technical point of view rather then design
 
 `npm run-script dev-server` starts the webpack dev server. It also requires a manual start of the the `express` server (under folder `server`) which has the necessary API gates, which had to be bypassed during development due to security issues (HTTPS & CORS).
 
+### Example
+Working example can be found at [http://weather.mwebdesign.co.uk/](http://weather.mwebdesign.co.uk/)
