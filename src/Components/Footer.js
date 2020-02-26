@@ -6,7 +6,7 @@ export default () => (
     <Col id="Footer">
         <Row>
             <Col sm="4" className="text-center">
-                <p>Accreditions:</p>
+                <p>Accreditations:</p>
             </Col>
             <Col sm="4" className="text-center">
                 <a href="//darksky.com" style={{fontSize: `200%`}}>Dark Sky</a>
