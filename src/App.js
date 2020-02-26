@@ -12,6 +12,7 @@ import {
 } from 'react-bootstrap'
 
 import NavBar from './Components/NavBar'
+import Footer from './Components/Footer'
 
 import Home from './Routes/Home'
 import Location from './Routes/Location'
@@ -24,10 +25,15 @@ export default class App extends React.Component {
                     <Row className="nav-row">
                         <NavBar />
                     </Row>
+                    <Row className="action-row">
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <Route path="/location/:city_name/:place_id" component={Location} />
+                            <Route path="/location/:place_id" component={Location} />
                         </Switch>
+                    </Row>
+                    <Row>
+                        <Footer />
+                    </Row>
                 </Router>
             </Container>
         )

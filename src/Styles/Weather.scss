@@ -1,9 +1,11 @@
+$bg: linear-gradient(180deg, #007bff, #007bff7F);
+
 #Weather {
     margin: 1% auto;
     border-radius: 32px;
     padding: 5%;
     color: white;
-    background: linear-gradient(180deg, #007bff, #007bff7F);
+    background: $bg;
     text-align: center;
 
     h1 {
@@ -17,8 +19,33 @@
 
 #Carousel {
     overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+
     > .row {
         flex-wrap: nowrap;
+    }    
+
+    .later {
+        background: $bg;
+        padding-top: 20px;
+        margin: 1%;
+        border-radius: 16px;
+        color: white;
+        height: fit-content;
+    }
+
+    .Switcher {
+        background: rgba(110, 110, 110, 0.498);
+        padding: 10px;
+        margin: 1%;
+        border-radius: 16px;
+        color: white;
+        display: flex;
+
+        > svg {
+            margin: auto;
+        }
     }
 }
 
