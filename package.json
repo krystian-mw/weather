@@ -28,6 +28,7 @@
     "axios": "latest",
     "babel-loader": "latest",
     "bootstrap": "^4.4.1",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "latest",
     "express": "^4.17.1",
     "file-loader": "^5.1.0",

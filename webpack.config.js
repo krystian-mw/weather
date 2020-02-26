@@ -6,6 +6,7 @@
 const path = require('path')
 const DefinePlugin = require('webpack').DefinePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.stringify('development')
@@ -15,7 +16,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     publicPath: '/',
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].pack.js'
   },
   optimization: {
@@ -43,13 +44,13 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|jpe?g|gif|png|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/'
+              outputPath: '/'
             }
           }
         ]
@@ -67,7 +68,10 @@ module.exports = {
       // If splitting bundles, use this to auto import all splitted modules
       new HtmlWebpackPlugin({
         template: './public/index.html'
-      })
+      }),
+      new CopyWebpackPlugin([
+          { from: 'public/media' }
+      ])
   ],
   devtool: 'cheap-module-eval-source-map',
   devServer: {

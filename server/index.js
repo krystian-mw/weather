@@ -2,12 +2,11 @@ const express = require('express')
 
 const app = express()
 
-app.use((req, res, next) => {
-    console.log(req.url)
-    next()
-})
-
+app.use(express.static('../dist'))
 app.use(express.json())
-app.use('/api', require('apicache').middleware('30 minutes'),require('./router'))
+app.use('/api', require('./router'))
+app.use((req, res) => {
+    res.sendFile('index.html', { root: __dirname + '../dist' })
+})
 
 app.listen(8080, '0.0.0.0')
