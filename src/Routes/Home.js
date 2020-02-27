@@ -12,12 +12,7 @@ export default class Home extends React.Component {
     }
 
     componentDidMount () {
-        Axios.get('//api.ipstack.com/check', {
-            params: {
-                access_key: `94119a032cabb83b9892e58d51bee837`,
-                fields: `latitude,longitude`
-            }
-        }).then(res => {
+        Axios.get('/api/ip').then(res => {
             if (res.data.success === undefined) {
                 this.setState({
                     Component: <Weather

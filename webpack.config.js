@@ -4,16 +4,15 @@
  */
 
 const path = require('path')
-const DefinePlugin = require('webpack').DefinePlugin
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.stringify('development')
-const isDevelopment = (process.env.NODE_ENV === 'development') ? true : false
-
-module.exports = {
-  entry: './src/index.js',
+const config = {
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/index.js'
+  ],
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'dist'),
@@ -58,35 +57,17 @@ module.exports = {
     ]
   },
   plugins: [
-      new DefinePlugin({
-          'process.env': {
-              NODE_ENV: process.env.NODE_ENV || JSON.stringify('development'),
-              ENV: process.env.NODE_ENV || JSON.stringify('development'),
-              ASSET_PATH: JSON.stringify('/')
-          }
-      }),
-      // If splitting bundles, use this to auto import all splitted modules
+      new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
-        template: './public/index.html'
+        template: 'src/index.html'
       }),
       new CopyWebpackPlugin([
-          { from: 'public/media' }
+          {
+            from: 'public'
+          }
       ])
   ],
-  devtool: 'cheap-module-eval-source-map',
-  devServer: {
-    hot: true,
-    contentBase: path.join(__dirname, 'public'),
-    // publicPath: '/',
-    historyApiFallback: true,
-    port: process.env.PORT || 80,
-    proxy: {
-        "/api": {
-            target: 'http://localhost:8080',
-            secure: false
-        }
-    },
-    host: '0.0.0.0',
-    disableHostCheck: true
-  }
+  devtool: 'cheap-module-eval-source-map'
 }
+
+module.exports = config

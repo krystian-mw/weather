@@ -5,7 +5,7 @@ router.get('/autocomplete/:input', (req, res) => {
     Axios.get('https://maps.googleapis.com/maps/api/place/queryautocomplete/json', {
         params: {
             input: req.params.input,
-            key: `AIzaSyAXMb2bZvOTRJ3XQ1-4GS5ePTRDbyGTfsU`
+            key: process.env.GOOGLE_API_KEY
         }
     }).then(response => {
         let out = []
@@ -22,7 +22,7 @@ router.get('/coords/:place_id', (req, res) => {
     Axios.get('https://maps.googleapis.com/maps/api/place/details/json', {
         params: {
             place_id: req.params.place_id,
-            key: `AIzaSyAXMb2bZvOTRJ3XQ1-4GS5ePTRDbyGTfsU`
+            key: process.env.GOOGLE_API_KEY
         }
     }).then(response => {
         res.json(response.data.result.geometry.location)
@@ -32,7 +32,7 @@ router.get('/coords/:place_id', (req, res) => {
 })
 
 router.get('/forecast/:latlng', (req, res) => {
-    Axios.get(`https://api.darksky.net/forecast/2808ca0e1aa31ee0b6d16d3aa7659c18/${req.params.latlng}`, {
+    Axios.get(`https://api.darksky.net/forecast/${process.env.DARKSKY_API_KEY}/${req.params.latlng}`, {
         params: {
             lang: 'pl',
             units: 'si',
@@ -42,7 +42,7 @@ router.get('/forecast/:latlng', (req, res) => {
         Axios.get(`https://geocode.xyz/${req.params.latlng}`, {
             params: {
                 geoit: 'json',
-                key: '94793317891362771971x4708'
+                key: process.env.GEOCODE_API_KEY
             }
         }).then(location_response => {
             res.json({
@@ -57,8 +57,24 @@ router.get('/forecast/:latlng', (req, res) => {
             })
         })
     }).catch(err => {
-        console.log(err)
         res.status(500).json(err)
+    })
+})
+
+router.get('/ip', (req, res) => {
+    if (
+        process.env.NODE_ENV === 'development'
+        || req.connection.remoteAddress === '127.0.0.1'
+    ) req.headers['x-forwarded-for'] = '134.201.250.155' // random IP address pulled out from ipstacks docs
+    Axios.get(`http://api.ipstack.com/${req.headers['x-forwarded-for'] || req.connection.remoteAddress}`, {
+        params: {
+            access_key: process.env.IPSTACK_API_KEY,
+            fields: `latitude,longitude`
+        }
+    }).then(response => {
+        res.json(response.data)
+    }).catch(err => {
+        res.json(err)
     })
 })
 

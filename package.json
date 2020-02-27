@@ -1,13 +1,12 @@
 {
   "name": "weather",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Aplikacja Pogodowa",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node server/index.js",
-    "build": "webpack --mode=production",
-    "dev-server": "webpack-dev-server"
+    "start": "node index.js development",
+    "build": "node index.js production"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,7 @@
     "bootstrap": "^4.4.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "latest",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "file-loader": "^5.1.0",
     "html-webpack-plugin": "^3.2.0",
@@ -46,9 +46,11 @@
     "sass": "latest",
     "sass-loader": "latest",
     "style-loader": "^1.1.2",
-    "webpack": "latest",
+    "webpack": "^4.41.6",
     "webpack-cli": "latest",
-    "webpack-dev-server": "latest"
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "latest",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "webpack-cli": "latest",

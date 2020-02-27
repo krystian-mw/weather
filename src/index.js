@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// import('open-weather-icons/scss/open-weather-icons.scss')
 import('bootstrap/scss/bootstrap.scss')
 import('./Styles/index.scss')
 
