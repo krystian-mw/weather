@@ -9,8 +9,6 @@ Built more on a technical point of view rather then design
 Simple as:
 
 `git clone https://github.com/krystian-mw/weather`
-or
-`npm i krystian-mw/weather`
 
 and then of course:
 
