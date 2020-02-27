@@ -23,6 +23,7 @@ The `sample.env` file has to be cloned, modified and renamed to `.env` as import
 ### Usage
 
 `npm start` - starts the dev server
+
 `npm run-script build` - compiles a version to the `dist` folder
 
 ### Changelog
